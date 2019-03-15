@@ -12,12 +12,18 @@ Things you may want to cover:
 * Configuration
 
 * Database
+
+User
+  - name : string
+  - password : string
+
 Task
   - title : string
   - content : text
   - finish_time : datetime
   - priority : integer
   - status : string
+  - user_id : integer
 
 * How to run the test suite
 
