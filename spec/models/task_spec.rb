@@ -16,6 +16,26 @@ RSpec.describe Task, type: :model do
       )
        expect( Task.count ).to eq(1)
     end
+
+    it "title 不可空白" do
+      Task.create( 
+        content: " 詳細內容請見：https://github.com/5xRuby/5xtraining/blob/master/backend.md ",
+        status: "未完成",
+        priority: "10",
+        finish_time: "2019-03-22"
+      )
+       expect( Task.count ).to eq(0)
+    end
+
+    it "content 不可空白" do
+      Task.create( 
+        title: "完成 5xRuby 面試題目",
+        status: "未完成",
+        priority: "10",
+        finish_time: "2019-03-22"
+      )
+       expect( Task.count ).to eq(0)
+    end
   end
 
   describe "編輯 task 功能" do
