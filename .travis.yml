@@ -1,9 +1,9 @@
 language: ruby
 rvm:
- — 2.5.3
+  - 2.5.3
 
 script:
-  bundle install
-  bundle exec rails db:create RAILS_ENV=test
-  bundle exec rails db:migrate RAILS_ENV=test
-  bundle exec rspec
+  - bundle install
+  - bundle exec rails db:create RAILS_ENV=test
+  - bundle exec rails db:migrate RAILS_ENV=test
+  - bundle exec rspec
