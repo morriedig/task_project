@@ -1,0 +1,17 @@
+<%= form_for @task do |task| %>
+  <%= task.label :title, "任務名稱" %> <br>
+  <%= task.text_field :title %><br>
+
+  <%= task.label :content, "任務內容" %> <br>
+  <%= task.text_field :content %><br>
+
+  <%= task.label :priority, "優先順序" %> <br>
+  <%= task.text_field :priority %><br>
+
+  <%= task.label :status, "任務狀態" %><br>
+  <%= task.text_field :status %><br>
+  
+  <%= task.label :finish_time, "預計完成時間" %><br>
+  <%= task.date_field :finish_time %><br>
+  <%= task.submit %>
+<% end %>
