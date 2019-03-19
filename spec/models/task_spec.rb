@@ -82,7 +82,7 @@ RSpec.describe Task, type: :model do
         title: "完成 5xRuby 面試題目 #{ i }",
         content: " 詳細內容請見：https://github.com/5xRuby/5xtraining/blob/master/backend.md ",
         status: "pending",
-        priority: "10",
+        priority: i,
         finish_time: "2019-03-22",
         created_at: i.days.ago
       )}
@@ -95,6 +95,11 @@ RSpec.describe Task, type: :model do
     it "task 可以由完成時間排序" do
       all_task_id = Task.order_by_finish_time.pluck(:id)
       expect( Task.all.order(finish_time: :desc).pluck(:id) ).to eq all_task_id
+    end
+
+    it "task 可以由優先順序排序" do
+      all_task_id = Task.order_by_priority.pluck(:id)
+      expect( Task.all.order(priority: :desc).pluck(:id) ).to eq all_task_id
     end
   end
 
