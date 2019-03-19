@@ -91,5 +91,10 @@ RSpec.describe Task, type: :model do
       all_task_id = Task.all.pluck(:id)
       expect( Task.all.order(created_at: :asc).pluck(:id) ).to eq all_task_id
     end
+
+    it "task 可以由完成時間排序" do
+      all_task_id = Task.order_by_finish_time.pluck(:id)
+      expect( Task.all.order(finish_time: :desc).pluck(:id) ).to eq all_task_id
+    end
   end
 end
