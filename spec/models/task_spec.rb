@@ -16,6 +16,26 @@ RSpec.describe Task, type: :model do
       )
        expect( Task.count ).to eq(1)
     end
+
+    it "title 不可空白" do
+      Task.create( 
+        content: " 詳細內容請見：https://github.com/5xRuby/5xtraining/blob/master/backend.md ",
+        status: "未完成",
+        priority: "10",
+        finish_time: "2019-03-22"
+      )
+       expect( Task.count ).to eq(0)
+    end
+
+    it "content 不可空白" do
+      Task.create( 
+        title: "完成 5xRuby 面試題目",
+        status: "未完成",
+        priority: "10",
+        finish_time: "2019-03-22"
+      )
+       expect( Task.count ).to eq(0)
+    end
   end
 
   describe "編輯 task 功能" do
@@ -38,7 +58,7 @@ RSpec.describe Task, type: :model do
   end
 
   describe "刪除 task 功能" do
-    before(:each) do
+    before(:all) do
       Task.create( 
         title: "完成 5xRuby 面試題目",
         content: " 詳細內容請見：https://github.com/5xRuby/5xtraining/blob/master/backend.md ",
@@ -53,6 +73,23 @@ RSpec.describe Task, type: :model do
     it "原本有 1 個 task，減少一個變成 0 個" do
       Task.first.destroy
       expect( Task.count ).to eq(0)
+    end
+  end
+
+  describe "Task 排序功能" do
+    before(:all) do
+      5.times { | i | Task.create( 
+        title: "完成 5xRuby 面試題目 #{ i }",
+        content: " 詳細內容請見：https://github.com/5xRuby/5xtraining/blob/master/backend.md ",
+        status: "未完成",
+        priority: "10",
+        finish_time: "2019-03-22",
+        created_at: i.days.ago
+      )}
+    end
+    it "由task建立時間排序，從最早建立的開始排" do
+      all_task_id = Task.all.pluck(:id)
+      expect( Task.all.order(created_at: :asc).pluck(:id) ).to eq all_task_id
     end
   end
 end
