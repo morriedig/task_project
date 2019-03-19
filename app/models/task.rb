@@ -2,6 +2,7 @@ class Task < ApplicationRecord
   validates_presence_of :title, :content
   default_scope { order(created_at: :desc) }
   scope :order_by_finish_time, -> { order(finish_time: :desc) }
+  scope :order_by_priority, -> { order(priority: :desc) }
 
   def self.get_search_tasks(search_status , search_word = nil)
     if search_status == "all" || search_status == ""
