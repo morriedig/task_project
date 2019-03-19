@@ -1,5 +1,14 @@
 <h1> <%= t("hello_world") %> this is all tasks </h1>
 
+<%= form_tag("/", method: "get") do %>
+  <%= label_tag( :search_status, "狀態") %>
+  <%= select_tag( :search_status, options_for_select( [ ["全部", "all"], ["待處理", "pending"], ["進行中", "ongoing"],["完成", "finished"]] ) )%>
+
+  <%= label_tag(:search_word, "Search for:") %>
+  <%= text_field_tag(:search_word) %>
+  <%= submit_tag("Search") %>
+<% end %>
+
 <table>
   <thead>
     <tr>
