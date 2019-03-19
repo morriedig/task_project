@@ -1,7 +1,7 @@
 class TasksController < ApplicationController
 
   def index
-    @tasks = Task.get_search_tasks( params[:search_status], params[:search_word])
+    @tasks = Task.get_search_tasks( params[:search_status], params[:search_word]).page(params[:page]).per(1)
   end
 
   def show

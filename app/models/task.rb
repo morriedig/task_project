@@ -5,7 +5,7 @@ class Task < ApplicationRecord
   scope :order_by_priority, -> { order(priority: :desc) }
 
   def self.get_search_tasks(search_status , search_word = nil)
-    if search_status == "all" || search_status == ""
+    if search_status == "all" || search_status == nil
       tasks = self.all
     else
       tasks = self.where( status: search_status )
