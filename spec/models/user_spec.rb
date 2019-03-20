@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   describe "新增 User 功能" do
     it "可以新增user" do
-      User.create( name: "john", password: "12345678" )
+      user = User.create( name: "john", password: "12345678", password_confirmation: "12345678" )
       expect( User.count ).to eq(1)
     end
 
