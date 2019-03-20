@@ -1,0 +1,13 @@
+<h1> This is new user page </h1>
+<%= current_user.name if current_user %>
+<%= form_for(@user, url: "/admin/users/#{@user.id}", method: :patch )do |user| %>
+
+  <%= user.label :name %>
+  <%= user.text_field :name %>
+
+  <%= user.label :role %>
+  <%= user.text_field :role %>
+
+  <%= user.submit %>
+<% end %>
+<%= link_to "返回", admin_root_path %>

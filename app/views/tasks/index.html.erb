@@ -32,7 +32,7 @@
       <td><%= task.content %></td>
       <td><%= task.status %></td>
       <td><%= task.priority %></td>
-      <td><%= task.finish_time %></td>
+      <td><%= task.finish_time.strftime("%Y-%m-%d") %></td>
       <td><%= link_to "編輯", edit_task_path(id: task.id) %></td>
       <td><%= link_to "刪除", task_path(id: task.id), method: :delete %></td>
     </tr>

@@ -7,5 +7,10 @@ Rails.application.routes.draw do
   post "login" => "login#create"
   delete "logout" => "login#destroy"
 
+  namespace :admin do
+    resources :users
+    root "users#index"
+  end
+
   root "tasks#index"
 end

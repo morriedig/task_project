@@ -1,0 +1,33 @@
+<h1> This is <%= @user.name %> page </h1>
+<h3> <%= @user.name%> 的權限為 <%= @user.role %> </h3>
+<p>
+  此為使用者，總共有: <%= @user.tasks.count %> 個工作項目
+</p>
+<table>
+  <thead>
+    <tr>
+      <td>任務</td>
+      <td>任務內容</td>
+      <td>任務狀態</td>
+      <td>優先順係</td>
+      <td>完成時間</td>
+      <td>編輯</td>
+      <td>刪除</td>
+    </tr>
+  </thead>
+  <tbody>
+    <% @user.tasks.each do |task| %>
+    <tr>
+      <td><%= link_to task.title, task_path(task) %></td>
+      <td><%= task.content %></td>
+      <td><%= task.status %></td>
+      <td><%= task.priority %></td>
+      <td><%= task.finish_time.strftime("%Y-%m-%d") %></td>
+      <td><%= link_to "編輯", edit_task_path(id: task.id) %></td>
+      <td><%= link_to "刪除", task_path(id: task.id), method: :delete %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "返回", admin_root_path %>
