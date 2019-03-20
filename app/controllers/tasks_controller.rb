@@ -1,7 +1,8 @@
 class TasksController < ApplicationController
+  before_action :check_login
 
   def index
-    @tasks = Task.get_search_tasks( params[:search_status], params[:search_word]).page(params[:page]).per(10)
+    @tasks = current_user.tasks.get_search_tasks( params[:search_status], params[:search_word]).page(params[:page]).per(10)
   end
 
   def show

@@ -1,5 +1,5 @@
 <h1> This is new user page </h1>
-
+<%= current_user.name if current_user %>
 <%= form_for @user do |user| %>
 
   <%= user.label :name %>
@@ -7,6 +7,9 @@
 
   <%= user.label :password %>
   <%= user.text_field :password %>
+
+  <%= user.label :password_confirmation %>
+  <%= user.text_field :password_confirmation %>
 
   <%= user.submit %>
 <% end %>

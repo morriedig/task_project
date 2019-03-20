@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 2.times do |i| 
-  user = User.create( name: "morrie#{i}", password: "12345678" )
+  user = User.create( name: "morrie#{i}", password: "12345678", password_confirmation: "12345678" )
   5.times { |k| user.tasks.create(
     title: "完成 5xRuby 面試題目 #{ k }",
     content: " 詳細內容請見：https://github.com/5xRuby/5xtraining/blob/master/backend.md ",
@@ -17,4 +17,3 @@
     created_at: k.days.ago
   ) }
 end
-

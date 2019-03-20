@@ -3,6 +3,9 @@ Rails.application.routes.draw do
 
   resources :tasks
   resources :users, except: [ :destroy, :index ]
+  get "login" => "login#new"
+  post "login" => "login#create"
+  delete "logout" => "login#destroy"
 
   root "tasks#index"
 end

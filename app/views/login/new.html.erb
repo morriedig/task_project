@@ -1,0 +1,16 @@
+<h1> This is new user page </h1>
+
+<% if current_user %>
+  <%= current_user.name %>
+  <%= link_to "logout", logout_path(id: current_user.id), method: :delete %>
+<% end %>
+
+<%= form_for :user, url: "login" do |user| %>
+  <%= user.label :name %>
+  <%= user.text_field :name %>
+
+  <%= user.label :password %>
+  <%= user.text_field :password %>
+
+  <%= user.submit "登入" %>
+<% end %>
