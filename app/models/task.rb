@@ -1,5 +1,8 @@
 class Task < ApplicationRecord
   # belongs_to :user
+  has_many :task_tag_with_tasks
+  has_many :task_tags, through: :task_tag_with_tasks
+  
   validates_presence_of :title, :content
   default_scope { order(created_at: :desc) }
   scope :order_by_finish_time, -> { order(finish_time: :desc) }
