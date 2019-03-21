@@ -38,7 +38,12 @@ class Admin::UsersController < ApplicationController
         user = User.find_by_id(params[:id])
         user.destroy
         raise "delete false" if User.admins.length < 1
-        redirect_to admin_root_path
+        if current_user.id != user.id
+          redirect_to admin_root_path 
+        else
+          clear_session_and_cookies
+          redirect_to login_path
+        end
       end
     rescue
       flash[:danger] = "最後一位 admin 不可刪除"

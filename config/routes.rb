@@ -13,4 +13,5 @@ Rails.application.routes.draw do
   end
 
   root "tasks#index"
+  match '*path' => "application#render_404", via: [:get, :put, :post, :delete, :options]
 end

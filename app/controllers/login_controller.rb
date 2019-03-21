@@ -22,10 +22,5 @@ class LoginController < ApplicationController
   end
 
   private
-  def clear_session_and_cookies
-    session.delete(:user_id)
-    @current_user = nil
-    cookies.delete(:user_id)
-  end
   
 end
