@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  rescue_from ActionView::Template::Error, :with => :view_error
-  rescue_from NameError, :with => :name_error
+  # rescue_from ActionView::Template::Error, :with => :view_error
+  # rescue_from NameError, :with => :name_error
 
   def view_error
     render file: "#{Rails.root}/public/500_view_error.html" , status: 500
@@ -32,8 +32,14 @@ class ApplicationController < ActionController::Base
   end
 
   def clear_session_and_cookies
+    forget(@current_user)
     session.delete(:user_id)
     @current_user = nil
-    cookies.permanent.signed.delete(:user_id)
+  end
+
+  def forget(user)
+    user.forget
+    cookies.delete(:user_id)
+    cookies.delete(:remember_token)
   end
 end
