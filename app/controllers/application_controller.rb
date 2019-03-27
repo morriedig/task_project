@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   end
 
   def forget(user)
-    user.forget
+    Logout::ForgetUser.new(user)
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
   end

@@ -13,12 +13,8 @@ class User < ApplicationRecord
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
 
-  def forget
-    update_attribute(:cookies_token, nil)
-  end
-
   private
-  
+
   def check_can_delete
     errors[:base] << "cannot delete submission that has already been paid"
     return false
