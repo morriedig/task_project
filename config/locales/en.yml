@@ -31,3 +31,10 @@
 
 en:
   hello_world: "Hello world"
+
+  index:
+    mission_task: 任務清單
+
+  user:
+    login: login
+    logout: logout

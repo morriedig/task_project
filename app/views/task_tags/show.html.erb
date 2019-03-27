@@ -1,5 +1,6 @@
-<%= render "partials/header"%>
 
+
+<%= render "partials/header"%>
 <div class="search_form container">
   <%= form_tag("/", method: "get", class: "form-inline") do %>
     <div class="row">
@@ -15,14 +16,13 @@
   <% end %>
 </div>
 
-
 <div class="container">
   <div class="content row">
     <div class="task_tags_block col-1">
       <ul>
-        <li class="active"><%= link_to "全部", root_path %></li>
+        <li><%= link_to "全部", root_path %></li>
         <% @task_tags.each do | task_tag | %>
-          <li><%= link_to task_tag.name, task_tag_path(task_tag) %></li>
+          <li class="<%= 'active' if task_tag.id == @task_tag.id %>"><%= link_to task_tag.name, task_tag_path(task_tag) %></li>
         <% end %>
       </ul>
     </div>
@@ -56,6 +56,5 @@
         <%= paginate @tasks %>
       </div>
     </div>
-    
   </div>
 </div>

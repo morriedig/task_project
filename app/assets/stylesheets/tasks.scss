@@ -1,3 +1,88 @@
 // Place all the styles related to the tasks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.search_form{
+  margin-top: 15px;
+  margin-bottom: 15px;
+  position: relative;
+  text-align:center;
+
+  label:first-child{
+    margin-left: 0px;
+  }
+
+  label{
+    margin-right: 30px;
+    margin-left: 30px;
+  }
+
+  input{
+    margin-right: 30px;
+  }
+
+  a{
+    position: absolute;
+  border: 1px solid black;
+  right: 10px;
+  }
+}
+
+.task_tags_block{
+
+  ul {
+    list-style: none;
+    margin: 0 auto ;
+    padding: 0;
+    width: 30px;
+    font-size: 18px;
+    text-align:center;
+
+    li{
+      margin: 10px 0;
+      border: 1px solid black;
+      border-radius: 8px;
+    }
+    li:first-child{
+      margin-top:0;
+    }
+    li.active{
+      border: 3px solid red;
+    }
+  }
+}
+
+.single_task_block:first-child{
+  border-top: 1px solid black;
+}
+.single_task_block{
+  border-bottom: 1px solid black;
+
+  > div{
+    padding-top: 5px;
+    padding-bottom: 5px;
+  }
+}
+
+.task_content_block{
+   border-left: 1px solid black;
+   width: 70%;
+}
+.handle_task_block{
+  text-align: right;
+}
+
+.page_number_block > .pagination{
+  display: block;
+  text-align:center;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.task_form_block{
+  margin-top: 20px;
+  padding-bottom: 20px;
+}
+.submit_btn_block{
+  text-align: right;
+}

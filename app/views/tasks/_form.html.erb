@@ -1,0 +1,43 @@
+<div class="task_form_block container">
+  <%= form_for @task do |task| %>
+    <div class="form-group">
+      <%= task.label :title, "任務名稱" %>
+      <%= task.text_field :title, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= task.label :task_tag_ids, "任務標籤" %>
+      <% TaskTag.all.each do |task_tag| %>
+        <%= check_box_tag "task[task_tag_ids][]", task_tag.id, @task.task_tags.include?(task_tag), id: "task_tag_#{task_tag.id}" %>
+        <%= label_tag "task_tag_#{ task_tag.id}", task_tag.name %>
+      <% end %>
+    </div>
+
+    <div class="form-group">
+      <%= task.label :content, "任務內容" %>
+      <%= task.text_field :content, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= task.label :priority, "優先順序" %>
+      <%= task.number_field :priority, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= task.label :status, "任務狀態" %>
+      <%= task.select(:status,[["待處理","pendding"],["處理中", "processing"] ,["已處理", "finished"]], {} ,{ class: "form-control"})  %>
+    </div>
+
+    <div class="form-group">
+      <%= task.label :finish_time, "預計完成時間" %>
+      <%= task.date_field :finish_time, class: "form-control" %>
+    </div>
+    <div class="form-group submit_btn_block">
+      <%= task.submit class: "btn btn-primary" %>    
+    </div>
+  <% end %>
+</div>
+
+<style>
+  
+</style>

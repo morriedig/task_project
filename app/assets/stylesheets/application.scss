@@ -13,3 +13,33 @@
  *= require_self
  */
  @import "bootstrap";
+ 
+
+ a:hover{
+   text-decoration: none;
+ }
+
+ body{
+   background-color: #e5e5e5;
+ }
+ .banner{
+   height: 40vh;
+   background-image: image_url("working.jpg");
+   background-position: center center;
+   background-size: cover;
+   position: relative;
+
+   h1{
+    position: absolute;
+    bottom: 5px;
+    right: 25px;
+   }
+ }
+
+ header{
+   background: #e5e5e5;
+   height: 50px;
+ }
+ 
+
+ @import "tasks";

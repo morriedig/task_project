@@ -1,2 +1,9 @@
 zh-TW:
   hello_world: 哈囉世界
+  
+  index:
+    mission_task: 任務清單
+
+  user:
+    login: 登入
+    logout: 登出
