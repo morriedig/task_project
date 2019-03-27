@@ -42,4 +42,11 @@ class ApplicationController < ActionController::Base
     cookies.delete(:user_id)
     cookies.delete(:remember_token)
   end
+
+  def remember(user)
+    Login::RememberUser.new(user)
+    session[:user_id] = user.id
+    cookies.permanent.signed[:user_id] = user.id
+    cookies.permanent.signed[:remember_token] = user.remember_token
+  end
 end
