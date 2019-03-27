@@ -28,6 +28,7 @@
     </div>
 
     <div class="main_content_block col-10">
+      <%= t('index.no_task') if @tasks.blank? %>
       <% @tasks.each do |task| %>
         <section class="single_task_block task_<%= task.id %> row">
           <div class="task_priority_block col-2">

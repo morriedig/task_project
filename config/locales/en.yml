@@ -34,6 +34,7 @@ en:
 
   index:
     mission_task: 任務清單
+    no_task: There is not task.
 
   user:
     login: login

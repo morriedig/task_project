@@ -3,6 +3,7 @@ zh-TW:
   
   index:
     mission_task: 任務清單
+    no_task: 目前尚無任何代辦項目
 
   user:
     login: 登入

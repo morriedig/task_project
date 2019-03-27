@@ -1,13 +1,18 @@
-<header class="header container-fluid">
-  <% if current_user %>
-    <%= current_user.name %>
-    <%= link_to t("user.logout"), logout_path(id: current_user ), method: :delete %>
-  <% end %>
-</header>
-
 <div class="container-fluid banner">
+  <header class="header container-fluid">
+    <div class="container">
+      <% if current_user %>
+        <%= current_user.name %>
+        <%= link_to t("user.logout"), logout_path(id: current_user ), method: :delete %>
+        <% if current_user.admin? %>
+          <%= link_to "返回前台", root_path, class: "#{ 'active' if controller_name == "tasks" }" %>
+          <%= link_to "後台管理", admin_users_path, class: "#{ 'active' if controller_name == "users" }" %>
+        <% end %>
+      <% end %>
+    </div>
+  </header>
+
   <h1>
-    <%#= current_user.name %>
     <% if content_for?(:title) %>
       <%= yield(:title)%>
     <% else %>

@@ -1,16 +1,26 @@
-<h1> This is new user page </h1>
-
-<% if current_user %>
-  <%= current_user.name %>
-  <%= link_to "logout", logout_path(id: current_user.id), method: :delete %>
+<% content_for :title do %>
+  歡迎登入
 <% end %>
+<%= render "partials/header" %>
 
-<%= form_for :user, url: "login" do |user| %>
-  <%= user.label :name %>
-  <%= user.text_field :name %>
+<div class="container">
+  <div class="back_btn_block">
+    <%= link_to "註冊", new_user_path, class: "btn btn-primary" %>
+  </div>
 
-  <%= user.label :password %>
-  <%= user.text_field :password %>
+  <%= form_for :user, url: "login" do |user| %>
+    <div class="form-group">
+      <%= user.label :name, "使用者姓名" %>
+      <%= user.text_field :name, class: "form-control" %>
+    </div>
 
-  <%= user.submit "登入" %>
-<% end %>
+    <div class="form-group">
+      <%= user.label :password, "密碼" %>
+      <%= user.text_field :password, class: "form-control" %>
+    </div>
+
+    <div class="form-group submit_btn_block">
+      <%= user.submit "登入", class: "btn btn-primary" %>    
+    </div>
+  <% end %>
+</div>

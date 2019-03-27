@@ -1,15 +1,32 @@
-<h1> This is new user page </h1>
-<%= current_user.name if current_user %>
-<%= form_for @user do |user| %>
-
-  <%= user.label :name %>
-  <%= user.text_field :name %>
-
-  <%= user.label :password %>
-  <%= user.text_field :password %>
-
-  <%= user.label :password_confirmation %>
-  <%= user.text_field :password_confirmation %>
-
-  <%= user.submit %>
+<% content_for :title do %>
+  註冊帳號
 <% end %>
+<%= render "partials/header" %>
+
+<div class="container">
+  <div class="back_btn_block">
+    <%= link_to "已有帳號",login_path, class: "btn btn-primary" %>
+  </div>
+  
+  <%= form_for @user do |user| %>
+  
+    <div class="form-group">
+      <%= user.label :name, "使用者姓名" %>
+      <%= user.text_field :name, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= user.label :password, "密碼" %>
+      <%= user.text_field :password, class: "form-control" %>
+    </div>
+
+    <div class="form-group">
+      <%= user.label :password_confirmation, "確認密碼" %>
+      <%= user.text_field :password_confirmation, class: "form-control" %>
+    </div>
+
+    <div class="form-group submit_btn_block">
+      <%= user.submit class: "btn btn-primary" %>    
+    </div>
+  <% end %>
+</div>
