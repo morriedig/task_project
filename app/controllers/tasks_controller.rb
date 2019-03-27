@@ -1,7 +1,9 @@
 class TasksController < ApplicationController
+  before_action :check_login
 
   def index
-    @tasks = Task.all
+    @tasks = current_user.tasks.get_search_tasks( params[:search_status], params[:search_word]).page(params[:page]).per(5)
+    @task_tags = TaskTag.all
   end
 
   def show
@@ -14,7 +16,9 @@ class TasksController < ApplicationController
   
   def create
     @task = Task.new( task_params )
+    @task.user_id = current_user.id
     if @task.save
+      params[:task][:task_tag_ids].each { |i| @task.task_tag_with_tasks.create( task_tag_id: i.to_i ) }
       redirect_to tasks_path, notice: "任務新增成功!"
     else
       render :new
@@ -45,7 +49,7 @@ class TasksController < ApplicationController
   end
 
   def task_params
-    params.require(:task).permit(:title, :content, :status, :priority, :finish_time)
+    params.require(:task).permit(:title, :content, :status, :priority, :finish_time, :task_tag_ids => [])
   end
   
   

@@ -1,0 +1,61 @@
+
+
+<%= render "partials/header"%>
+<div class="search_form container">
+  <%= form_tag("/", method: "get", class: "form-inline") do %>
+    <div class="row">
+        <%= label_tag( :search_status, "狀態：", class: "my-1 mr-2") %>
+        <%= select_tag( :search_status, options_for_select( [["全部", "all"], ["待處理", "pending"], ["進行中", "processing"],["完成", "finished"]]) ,class: "custom-select my-1 mr-sm-2" )%>
+
+        <%= label_tag(:search_word, "關鍵字：") %>
+        <%= text_field_tag(:search_word,"", class: "form-control") %>
+
+        <%= submit_tag("Search", class: "form-control") %>
+    </div>
+    <%= link_to "NEW Task", new_task_path, class: "btn" %>
+  <% end %>
+</div>
+
+<div class="container">
+  <div class="content row">
+    <div class="task_tags_block col-1">
+      <ul>
+        <li><%= link_to "全部", root_path %></li>
+        <% @task_tags.each do | task_tag | %>
+          <li class="<%= 'active' if task_tag.id == @task_tag.id %>"><%= link_to task_tag.name, task_tag_path(task_tag) %></li>
+        <% end %>
+      </ul>
+    </div>
+
+    <div class="main_content_block col-10">
+      <%= t('index.no_task') if @tasks.blank? %>
+      <% @tasks.each do |task| %>
+        <section class="single_task_block task_<%= task.id %> row">
+          <div class="task_priority_block col-2">
+            <p>
+              重要：<%= task.priority %> <br>
+              <%= task.get_status %>
+            </p>
+          </div>
+          <div class="task_head_block col-3">
+            <%= task.title %><br>
+            <%= task.finish_time.strftime("%Y-%m-%d") %> 
+          </div>
+          <div class="task_content_block col-6">
+            <p>
+              <%= task.content %>
+            </p>
+          </div>
+          <div class="handle_task_block col-1">
+            <%= link_to "編輯", edit_task_path(id: task.id) %>
+            <%= link_to "刪除", task_path(id: task.id), method: :delete %>
+          </div>
+        </section>
+      <% end %>
+
+      <div class="page_number_block">
+        <%= paginate @tasks %>
+      </div>
+    </div>
+  </div>
+</div>
