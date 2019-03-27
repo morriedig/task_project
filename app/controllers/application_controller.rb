@@ -49,4 +49,10 @@ class ApplicationController < ActionController::Base
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent.signed[:remember_token] = user.remember_token
   end
+
+  def check_role
+    if check_login || current_user.role != "admin"
+      redirect_to root_path
+    end
+  end
 end

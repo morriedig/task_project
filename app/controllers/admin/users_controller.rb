@@ -46,25 +46,10 @@ class Admin::UsersController < ApplicationController
         redirect_to admin_users_path
       end
     end
-
-    
-
-    # if current_user.id != user.id
-    #   redirect_to admin_root_path 
-    # else
-    #   clear_session_and_cookies
-    #   redirect_to login_path
-    # end
   end
   
   private
   def user_params
     params.require(:user).permit(:name, :password, :password_confirmation, :role)
-  end
-
-  def check_role
-    if check_login || current_user.role != "admin"
-      redirect_to root_path
-    end
   end
 end
