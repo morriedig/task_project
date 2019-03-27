@@ -1,7 +1,7 @@
 class Task < ApplicationRecord
-  # belongs_to :user
+  belongs_to :user, optional: true
   attr_accessor :task_tag_ids
-  has_many :task_tag_with_tasks
+  has_many :task_tag_with_tasks, dependent: :delete_all
   has_many :task_tags, through: :task_tag_with_tasks
   
   validates_presence_of :title, :content

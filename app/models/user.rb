@@ -1,7 +1,7 @@
 class User < ApplicationRecord
   attr_accessor :remember_token
 
-  has_many :tasks, dependent: :delete_all
+  has_many :tasks, dependent: :destroy
   has_secure_password
   scope :admins, -> { where(role: "admin") }
 
@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   def authenticated?(remember_token)
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
+  end
+
+  def admin?
+    role == 'admin'
   end
 
   private

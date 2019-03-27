@@ -2,11 +2,12 @@ class Admin::UsersController < ApplicationController
   before_action :check_role
 
   def index
-    @users = User.includes(:tasks)
+    @users = User.includes(:tasks).page(params[:page]).per(5)
   end
 
   def show
     @user = User.includes(:tasks).find_by_id(params[:id])
+    @tasks = @user.tasks.page(params[:page]).per(5)
   end
 
   def new
@@ -33,22 +34,27 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
-    begin
-      User.transaction do
-        user = User.find_by_id(params[:id])
-        user.destroy
-        raise "delete false" if User.admins.length < 1
-        if current_user.id != user.id
-          redirect_to admin_root_path 
-        else
-          clear_session_and_cookies
-          redirect_to login_path
-        end
+    user_id = params[:id].to_i
+    if current_user.id == user_id
+      flash[:danger] = "請由其他管理員刪除本帳號"
+      redirect_to admin_root_path
+    else
+      begin
+        HandleUser::Destroy.new(user_id)
+      rescue
+        flash[:danger] = "最後一位 admin 不可刪除"
+        redirect_to admin_users_path
       end
-    rescue
-      flash[:danger] = "最後一位 admin 不可刪除"
-      redirect_to admin_users_path
     end
+
+    
+
+    # if current_user.id != user.id
+    #   redirect_to admin_root_path 
+    # else
+    #   clear_session_and_cookies
+    #   redirect_to login_path
+    # end
   end
   
   private
