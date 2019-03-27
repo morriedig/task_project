@@ -24,7 +24,7 @@ class LoginController < ApplicationController
   private
 
   def remember(user)
-    user.remember
+    Login::RememberUser.new(user)
     cookies.permanent.signed[:user_id] = user.id
     cookies.permanent.signed[:remember_token] = user.remember_token
   end

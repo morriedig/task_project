@@ -9,20 +9,6 @@ class User < ApplicationRecord
   validates_uniqueness_of :name
   before_destroy :check_can_delete
 
-  def User.digest(string)
-    cost = ActiveModel::SecurePassword.min_cost ? BCrypt::Engine::MIN_COST : BCrypt::Engine.cost
-    BCrypt::Password.create(string, cost: cost)
-  end
-
-  def self.get_token
-    SecureRandom.urlsafe_base64
-  end
-
-  def remember
-    self.remember_token = User.get_token
-    self.update( cookies_token: User.digest(self.remember_token) )
-  end
-
   def authenticated?(remember_token)
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
@@ -32,6 +18,7 @@ class User < ApplicationRecord
   end
 
   private
+  
   def check_can_delete
     errors[:base] << "cannot delete submission that has already been paid"
     return false
