@@ -6,7 +6,7 @@ feature "task order" do
     user = create(:user)
     task_3 = create(:task, user_id: user.id, title: "task3", created_at: 3.days.ago)
     task_2 = create(:task, user_id: user.id, title: "task2", created_at: 2.days.ago)
-    task_1 = create(:task, user_id: user.id, title: "task1", created_at: 2.days.ago)
+    task_1 = create(:task, user_id: user.id, title: "task1", created_at: 1.days.ago)
     visit login_path
     fill_in 'user[name]', :with => user.name
     fill_in 'user[password]', :with => "12345678"
