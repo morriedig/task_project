@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :check_login_before_login_and_signup, only: [:new]
 
   def new
     @user = User.new

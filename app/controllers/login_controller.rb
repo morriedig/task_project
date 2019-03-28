@@ -1,5 +1,6 @@
 class LoginController < ApplicationController
   before_action :check_login, only: [:destroy]
+  before_action :check_login_before_login_and_signup, only: [:new]
 
   def new
   end
