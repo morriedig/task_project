@@ -30,10 +30,10 @@ Task
 * Services (job queues, cache servers, search engines, etc.)
 
 *login - acount:
-  admin: 
+  - admin: 
     name: admin0
     password: 12345678
   
-  guest:
+  - guest:
     name: guest0
     password: 12345678
