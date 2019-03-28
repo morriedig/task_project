@@ -31,6 +31,13 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def check_login_before_login_and_signup
+    if login?
+      redirect_to root_path
+    end
+  end
+  
+
   def clear_session_and_cookies
     forget(@current_user)
     session.delete(:user_id)
@@ -51,7 +58,7 @@ class ApplicationController < ActionController::Base
   end
 
   def check_role
-    if check_login || current_user.role != "admin"
+    if login? && current_user.role != "admin"
       redirect_to root_path
     end
   end

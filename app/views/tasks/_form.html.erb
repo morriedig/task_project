@@ -20,12 +20,12 @@
 
     <div class="form-group">
       <%= task.label :priority, "優先順序" %>
-      <%= task.number_field :priority, class: "form-control" %>
+      <%= task.select(:priority,[["高", 3],["中", 2] ,["低", 1]], {} ,{ class: "form-control"}) %>
     </div>
 
     <div class="form-group">
       <%= task.label :status, "任務狀態" %>
-      <%= task.select(:status,[["待處理","pendding"],["處理中", "processing"] ,["已處理", "finished"]], {} ,{ class: "form-control"})  %>
+      <%= task.select(:status,[["待處理","pending"],["處理中", "processing"] ,["已處理", "finished"]], {} ,{ class: "form-control"})  %>
     </div>
 
     <div class="form-group">

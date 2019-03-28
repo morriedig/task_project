@@ -33,8 +33,8 @@
         <section class="single_task_block task_<%= task.id %> row">
           <div class="task_priority_block col-2">
             <p>
-              重要：<%= task.priority %> <br>
-              <%= task.get_status %>
+              重要：<%= priority(task) %> <br>
+              <%= status(task) %>
             </p>
           </div>
           <div class="task_head_block col-3">

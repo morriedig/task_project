@@ -18,18 +18,5 @@ class Task < ApplicationRecord
     end
     tasks = tasks.where( "title LIKE ? OR content LIKE ? ", "%#{search_word}%",  "%#{search_word}%" ) if search_word.present?
     tasks
-  end
-
-  def get_status
-    case status
-    when "pendding"
-      "待處理"
-    when "processing"
-      "處理中"
-    when "finished"
-      "已處理"
-    end
-  end
-  
-  
+  end  
 end
