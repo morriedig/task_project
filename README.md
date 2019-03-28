@@ -29,6 +29,11 @@ Task
 
 * Services (job queues, cache servers, search engines, etc.)
 
-* Deployment instructions
-
-* ...
+*login - acount:
+  admin: 
+    name: admin0
+    password: 12345678
+  
+  guest:
+    name: guest0
+    password: 12345678
