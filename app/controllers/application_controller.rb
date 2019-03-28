@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
-  # rescue_from ActionView::Template::Error, :with => :view_error
-  # rescue_from NameError, :with => :name_error
+  rescue_from ActionView::Template::Error, :with => :view_error
+  rescue_from NameError, :with => :name_error
 
   def view_error
     render file: "#{Rails.root}/public/500_view_error.html" , status: 500
